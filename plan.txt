@@ -1,0 +1,61 @@
+# Author: Bas Zoeteman
+# Attempt to make an outliner of how to structure
+# the game which is being attempted to be made.
+
+Turn-based strategy game with armies to be controlled
+and buildable structures on tiles, which represent
+territories (potentially part of a continent or area),
+which players fight over to control to eventually
+take over someone's base/capital.
+
+Requirements:
+ - Map
+ - Resources
+ - Army Construction
+ - Tile Construction
+ - Combat Logic
+ - Turn Logic
+ - Victory Conditions
+ - Graphics
+
+Map:
+ - Tiles
+ - Territory Connections
+ - Capitals/Spawn Locations
+ - Terrain Modifiers
+ - Various Tile Resources?
+ - Maybe Construction on Hex Borders?
+
+Resources:
+ - Gold
+ - Manpower?
+ - Materials?
+
+Army Construction:
+ - Costs Gold (and Manpower)
+ - Where Possible to Train?
+ - Spawn Spots
+ - Army Merging/Splitting
+
+Tile Construction:
+ - Buildings
+ - Resource Improvements
+
+Combat Logic:
+ - Combat Calculations
+ - Result Output
+ - Result Estimation if Random Factor in Combat
+
+Turn Logic:
+ - Simultaneous Turns
+ - What to Do
+ - Clear Indicators
+
+Victory Conditions:
+ - Capitals Conquered
+ - Points Gained
+ - Resources Farmed
+ - More Options
+
+Graphics:
+ - Use OpenGL for Simple Graphics
