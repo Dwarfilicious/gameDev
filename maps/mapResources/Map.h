@@ -17,6 +17,7 @@ public:
     Map(int mapSizeX, int mapSizeY);
     void addContinent(const Continent& continent);
     void addOceanTile(const Tile& tile);
+    void addBorderTile(const Tile& tile);
     void draw() const;
 
 private:

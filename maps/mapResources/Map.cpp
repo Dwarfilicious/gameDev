@@ -17,6 +17,11 @@ void Map::addOceanTile(const Tile& tile)
     oceanTiles.push_back(tile);
 }
 
+void Map::addBorderTile(const Tile& tile)
+{
+    borderTiles.push_back(tile);
+}
+
 void Map::draw() const
 {
     for (const Continent& continent : continents) {
