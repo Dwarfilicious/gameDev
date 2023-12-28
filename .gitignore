@@ -33,4 +33,5 @@
 
 # Compile files
 Makefile
+Makefile.in
 settings.json
