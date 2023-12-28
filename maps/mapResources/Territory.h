@@ -6,7 +6,6 @@
 
 #include <string>
 #include <vector>
-#include <GL/glut.h>
 
 #include "Tile.h"
 #include "Color.h"

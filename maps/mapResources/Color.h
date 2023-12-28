@@ -2,8 +2,6 @@
  * Date of Initial Creation: 27-12-2023
  * The color class, which represents a color in the RGB color space. */
 
-#include <GL/glut.h>
-
 #ifndef COLOR_H
 #define COLOR_H
 

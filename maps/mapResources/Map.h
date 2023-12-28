@@ -3,7 +3,6 @@
  * The map class, which contains all the tiles that make up the map. */
 
 #include <vector>
-#include <GL/glut.h>
 
 #include "Tile.h"
 #include "Territory.h"

@@ -5,7 +5,6 @@
 
 #include <string>
 #include <vector>
-#include <GL/glut.h>
 
 #include "Territory.h"
 #include "../../playerResources/Player.h"
