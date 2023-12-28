@@ -36,11 +36,11 @@ void Tile::draw(const Color& color, int mapSizeX, int mapSizeY) const
     float normalizedX = normalizeCoordinate(x, mapSizeX, sizeX);
     float normalizedY = normalizeCoordinate(y, mapSizeY, sizeY);
 
-        glBegin(GL_POLYGON);
-        glColor3f(color.getR(), color.getG(), color.getB());
-        glVertex2f(normalizedX - sizeX, normalizedY - sizeY);
-        glVertex2f(normalizedX + sizeX, normalizedY - sizeY);
-        glVertex2f(normalizedX + sizeX, normalizedY + sizeY);
-        glVertex2f(normalizedX - sizeX, normalizedY + sizeY);
-        glEnd();
-    }
+    glBegin(GL_POLYGON);
+    glColor3f(color.getR(), color.getG(), color.getB());
+    glVertex2f(normalizedX - sizeX, normalizedY - sizeY);
+    glVertex2f(normalizedX + sizeX, normalizedY - sizeY);
+    glVertex2f(normalizedX + sizeX, normalizedY + sizeY);
+    glVertex2f(normalizedX - sizeX, normalizedY + sizeY);
+    glEnd();
+}
