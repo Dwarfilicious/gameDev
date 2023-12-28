@@ -35,3 +35,7 @@
 Makefile
 Makefile.in
 settings.json
+
+# Tiled files
+*.tiled-project
+*.tiled-session
