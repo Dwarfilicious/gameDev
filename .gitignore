@@ -39,3 +39,6 @@ settings.json
 # Tiled files
 *.tiled-project
 *.tiled-session
+*.tsx
+*.tmx
+*.png
