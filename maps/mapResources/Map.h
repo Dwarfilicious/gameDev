@@ -2,7 +2,9 @@
  * Date of Initial Creation: 27-12-2023
  * The map class, which contains all the tiles that make up the map. */
 
+#include <fstream>
 #include <vector>
+#include "../../libraries/json.hpp"
 
 #include "Tile.h"
 #include "Territory.h"
@@ -13,10 +15,11 @@
 
 class Map {
 public:
-    Map(int mapSizeX, int mapSizeY);
+    Map();
     void addContinent(const Continent& continent);
     void addOceanTile(const Tile& tile);
     void addBorderTile(const Tile& tile);
+    void importMap(const std::string& fileName);
     void draw() const;
 
 private:
