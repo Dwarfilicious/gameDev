@@ -11,7 +11,7 @@ int main() {
     Player player("Player1");
 
     // Create a map
-    Map map(100, 100);
+    Map map;
 
     // Create a continent and add it to the map
     Continent continent("Continent1", 10);
