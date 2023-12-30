@@ -26,7 +26,7 @@ int Tile::getType() const
 
 float normalizeCoordinate(int coordinate, int mapSize, float tileSize)
 {
-    return (2.0f * (coordinate - tileSize / 2) / mapSize) - 1.0f;
+    return (2.0f * (coordinate + tileSize / 2) / mapSize) - 1.0f;
 }
 
 void Tile::draw(const Color& color, int mapSizeX, int mapSizeY) const
@@ -34,7 +34,7 @@ void Tile::draw(const Color& color, int mapSizeX, int mapSizeY) const
     float sizeX = 2.0f / (float) mapSizeX;
     float sizeY = 2.0f / (float) mapSizeY;
     float normalizedX = normalizeCoordinate(x, mapSizeX, sizeX);
-    float normalizedY = normalizeCoordinate(y, mapSizeY, sizeY);
+    float normalizedY = -normalizeCoordinate(y, mapSizeY, sizeY);
 
     glBegin(GL_POLYGON);
     glColor3f(color.getR(), color.getG(), color.getB());

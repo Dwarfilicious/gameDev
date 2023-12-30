@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <GL/glut.h>
+#include <queue>
+
 #include "Map.h"
 
 Map::Map() {}
@@ -44,11 +46,6 @@ void determineContinent(int x, int y, std::vector<int>& data,
         return;
     }
 
-    if (territory.getTiles().empty())
-    {
-        continent.addTerritory(territory);
-    }
-
     if (data[y * mapSizeX + x] == 1)
     {
         territory.addTile(Tile(x, y, 1));
@@ -56,6 +53,7 @@ void determineContinent(int x, int y, std::vector<int>& data,
 
     visited[y][x] = true;
 
+    std::queue<std::pair<int, int>> newTerritories;
     std::vector<std::pair<int, int>> directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
     for (const std::pair<int, int>& direction : directions)
     {
@@ -63,13 +61,26 @@ void determineContinent(int x, int y, std::vector<int>& data,
         int dy = direction.second;
         if (!outsideContinent(x + dx, y + dy, data, mapSizeX, mapSizeY) && data[y * mapSizeX + (x-1)] == 3)
         {
-            Territory newTerritory("territory");
-            determineContinent(x + 2*dx, y + 2*dy, data, mapSizeX, mapSizeY, visited, continent, newTerritory);
+            newTerritories.push(std::make_pair(x + 2*dx, y + 2*dy));
         }
         else
         {
             determineContinent(x + dx, y + dy, data, mapSizeX, mapSizeY, visited, continent, territory);
         }
+    }
+
+    if (!territory.getTiles().empty())
+    {
+        continent.addTerritory(territory);
+    }
+
+    while (!newTerritories.empty())
+    {
+        std::pair<int, int> newTerritoryStart = newTerritories.front();
+        newTerritories.pop();
+        Territory newTerritory("territory");
+        determineContinent(newTerritoryStart.first, newTerritoryStart.second, data, mapSizeX, mapSizeY,
+                           visited, continent, newTerritory);
     }
 
     return;
@@ -121,7 +132,11 @@ void Map::importMap(const std::string& fileName)
             }
         }
     }
-    std::cout << continents.size() << std::endl;
+    std::cout << continents[0].getTerritories()[0].getTiles().size() << std::endl;
+    for (const Territory& territory : continents[0].getTerritories())
+    {
+        std::cout << territory.getName() << std::endl;
+    }
 }
 
 void Map::draw() const
@@ -144,6 +159,12 @@ void Map::draw() const
 
 Map map;
 
+void timer(int)
+{
+    glutPostRedisplay();
+    glutTimerFunc(1000/60, timer, 0);
+}
+
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -155,7 +176,6 @@ void display()
 
 int main(int argc, char** argv)
 {
-    Map map;
     map.importMap("../Tiled/testMap.json");
 
     glutInit(&argc, argv);
@@ -165,6 +185,7 @@ int main(int argc, char** argv)
 
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
     glutDisplayFunc(display);
+    glutTimerFunc(1000/60, timer, 0);
     glutMainLoop();
 
     return 0;
