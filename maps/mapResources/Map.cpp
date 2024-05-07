@@ -31,7 +31,8 @@ bool outsideContinent(int x, int y, std::vector<int> data, int mapSizeX, int map
 }
 
 /* Helper function: using flood fill algorithm to add tiles to correct territories and territories
- * to the correct continent. */
+ * to the correct continent.
+ * WORK IN PROGRESS: flood-fill algorithm not yet working correctly. */
 void determineContinent(int x, int y, std::vector<int>& data,
                         int mapSizeX, int mapSizeY, std::vector<std::vector<bool>>& visited,
                         Continent& continent, Territory& territory)
