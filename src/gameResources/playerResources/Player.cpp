@@ -2,7 +2,7 @@
  * Date of Initial Creation: 27-12-2023
  * The player class, which represents a player in the game. */
 
-#include "Player.h"
+#include "Player.hpp"
 
 static const Color playerColors[] = {
     Color(1.0f, 0.0f, 0.0f), // Red

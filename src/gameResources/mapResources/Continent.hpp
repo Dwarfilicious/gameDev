@@ -6,8 +6,8 @@
 #include <string>
 #include <vector>
 
-#include "Territory.h"
-#include "../../playerResources/Player.h"
+#include "Territory.hpp"
+#include "playerResources/Player.hpp"
 
 #ifndef CONTINENT_H
 #define CONTINENT_H

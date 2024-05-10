@@ -4,7 +4,7 @@
  * These tiles are used to build a territory,
  * which in turn build a continent. */
 
-#include "Tile.h"
+#include "Tile.hpp"
 
 Tile::Tile(int x, int y, int type)
     : x(x), y(y), type(type) {}

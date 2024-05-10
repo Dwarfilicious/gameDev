@@ -6,7 +6,7 @@
 #include <GL/glut.h>
 #include <queue>
 
-#include "Map.h"
+#include "Map.hpp"
 
 Map::Map() {}
 
@@ -151,38 +151,4 @@ void Map::draw() const
     {
         tile.draw(Color(0.0f, 0.0f, 0.0f), mapSizeX, mapSizeY);
     }
-}
-
-Map map;
-
-void timer(int)
-{
-    glutPostRedisplay();
-    glutTimerFunc(1000/60, timer, 0);
-}
-
-void display()
-{
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    map.draw();
-
-    glutSwapBuffers();
-}
-
-int main(int argc, char** argv)
-{
-    map.importMap("../Tiled/testMap.json");
-
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
-    glutInitWindowSize(600, 600);
-    glutCreateWindow("Game");
-
-    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-    glutDisplayFunc(display);
-    glutTimerFunc(1000/60, timer, 0);
-    glutMainLoop();
-
-    return 0;
 }

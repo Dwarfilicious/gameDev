@@ -4,7 +4,7 @@
 
 #include <string>
 
-#include "../maps/mapResources/Color.h"
+#include "mapResources/Color.hpp"
 
 #ifndef PLAYER_H
 #define PLAYER_H

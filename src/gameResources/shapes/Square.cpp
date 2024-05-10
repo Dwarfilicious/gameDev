@@ -4,7 +4,7 @@
 
 #include <GL/glut.h>
 
-#include "Square.h"
+#include "Square.hpp"
 
 Square::Square(float x, float y, float size, float red, float green, float blue)
 {

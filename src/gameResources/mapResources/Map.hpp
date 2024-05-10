@@ -4,11 +4,11 @@
 
 #include <fstream>
 #include <vector>
-#include "../../libraries/json.hpp"
+#include "json.hpp"
 
-#include "Tile.h"
-#include "Territory.h"
-#include "Continent.h"
+#include "Tile.hpp"
+#include "Territory.hpp"
+#include "Continent.hpp"
 
 #ifndef MAP_H
 #define MAP_H

@@ -6,7 +6,7 @@
 
 #include <GL/glut.h>
 
-#include "Color.h"
+#include "Color.hpp"
 
 #ifndef TILE_H
 #define TILE_H

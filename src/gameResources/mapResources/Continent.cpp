@@ -3,7 +3,7 @@
  * The continent class, which contains all the territories
  * that make up a continent. These continents build a map. */
 
-#include "Continent.h"
+#include "Continent.hpp"
 
 Continent::Continent(const std::string& name, int bonusGold)
     : name(name), bonusGold(bonusGold) {}

@@ -4,7 +4,7 @@
  * that make up a territory. These territories are used
  * to build a continent. */
 
-#include "Territory.h"
+#include "Territory.hpp"
 
 Territory::Territory(const std::string& name)
     : name(name), owner("Neutral"), color(0.5f, 0.5f, 0.5f) {}

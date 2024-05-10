@@ -2,7 +2,7 @@
  * Date of Initial Creation: 27-12-2023
  * The color class, which represents a color in the RGB color space. */
 
-#include "Color.h"
+#include "Color.hpp"
 
 Color::Color(float r, float g, float b)
 {

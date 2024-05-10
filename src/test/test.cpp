@@ -1,10 +1,7 @@
 #include <iostream>
 
-#include "mapResources/Map.h"
-#include "mapResources/Continent.h"
-#include "mapResources/Territory.h"
-#include "mapResources/Tile.h"
-#include "../playerResources/Player.h"
+#include "mapResources/Map.hpp"
+#include "playerResources/Player.hpp"
 
 int main() {
     // Create a player

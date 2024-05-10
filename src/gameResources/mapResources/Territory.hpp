@@ -7,9 +7,9 @@
 #include <string>
 #include <vector>
 
-#include "Tile.h"
-#include "Color.h"
-#include "../../playerResources/Player.h"
+#include "Tile.hpp"
+#include "Color.hpp"
+#include "playerResources/Player.hpp"
 
 #ifndef TERRITORY_H
 #define TERRITORY_H
