@@ -21,7 +21,7 @@ void display()
 
 int main(int argc, char** argv)
 {
-    map.importMap("testMap.json");
+    map.importMap("testMap.json"); // need to fix how json file is linked
 
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
