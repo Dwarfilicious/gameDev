@@ -17,7 +17,7 @@
 #include <thread>
 #include <GL/glut.h>
 
-#include "shapes/Square.h"
+#include "shapes/Square.hpp"
 
 std::vector<Square> squares;
 
