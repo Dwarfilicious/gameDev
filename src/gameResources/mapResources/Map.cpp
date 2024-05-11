@@ -137,9 +137,6 @@ void Map::importMap(const std::string& fileName)
             }
         }
     }
-    std::cout << continents[0].getTerritories().size() << std::endl;
-    std::cout << continents[1].getTerritories().size() << std::endl;
-    std::cout << continents[2].getTerritories().size() << std::endl;
 }
 
 void Map::draw() const
