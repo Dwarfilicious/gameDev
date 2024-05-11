@@ -28,68 +28,69 @@ void Map::addBorderTile(const Tile& tile)
 
 bool outsideContinent(int x, int y, std::vector<int> data, int mapSizeX, int mapSizeY)
 {
-    return x < 0 || x >= mapSizeX || y < 0 || y >= mapSizeY || data[y * mapSizeY + x] == 2;
+    return x < 0
+        || x >= mapSizeX
+        || y < 0
+        || y >= mapSizeY
+        || static_cast<TileType>(data[y * mapSizeY + x]) == TileType::OCEAN;
 }
 
 /* Helper function: using flood fill algorithm to add tiles to correct territories and territories
- * to the correct continent.
- * WORK IN PROGRESS: flood-fill algorithm not yet working correctly. */
+ * to the correct continent. */
 void determineContinent(int x, int y, std::vector<int>& data,
                         int mapSizeX, int mapSizeY, std::vector<std::vector<bool>>& visited,
-                        Continent& continent, Territory& territory)
+                        Continent& continent, Territory& territory, int& territoryID)
 {
-    if (outsideContinent(x, y, data, mapSizeX, mapSizeY) || visited[y][x] == true)
-    {
-        return;
-    }
-
-    if (data[y * mapSizeX + x] == 3)
-    {
-        return;
-    }
-
-    if (data[y * mapSizeX + x] == 1)
-    {
-        territory.addTile(Tile(x, y, TileType::LAND));
-    }
-
-    visited[y][x] = true;
+    std::queue<std::pair<int, int>> toVisit;
+    toVisit.push({x, y});
 
     std::queue<std::pair<int, int>> newTerritories;
     std::vector<std::pair<int, int>> directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-    for (const std::pair<int, int>& direction : directions)
+    while (!toVisit.empty())
     {
-        int dx = direction.first;
-        int dy = direction.second;
-        if (!outsideContinent(x + dx, y + dy, data, mapSizeX, mapSizeY) && data[y * mapSizeX + (x-1)] == 3)
-        {
-            newTerritories.push(std::make_pair(x + 2*dx, y + 2*dy));
-        }
-        else
-        {
-            determineContinent(x + dx, y + dy, data, mapSizeX, mapSizeY, visited, continent, territory);
-        }
-    }
+        auto [x, y] = toVisit.front();
+        toVisit.pop();
 
-    if (!territory.getTiles().empty())
-    {
-        continent.addTerritory(territory);
+        territory.addTile({x, y, TileType::LAND});
+        visited[y][x] = true;
+
+        for (const std::pair<int, int>& direction : directions)
+        {
+            auto [dx, dy] = direction;
+
+            if (static_cast<TileType>(data[(y + dy) * mapSizeX + x + dx]) == TileType::LAND
+                && !visited[y + dy][x + dx])
+            {
+                toVisit.push({x + dx, y + dy});
+            }
+            else if (static_cast<TileType>(data[(y + dy) * mapSizeX + x + dx]) == TileType::BORDER)
+            {
+                newTerritories.push({x + 2*dx, y + 2*dy});
+            }
+        }
     }
 
     while (!newTerritories.empty())
     {
         std::pair<int, int> newTerritoryStart = newTerritories.front();
         newTerritories.pop();
-        Territory newTerritory("territory");
-        determineContinent(newTerritoryStart.first, newTerritoryStart.second, data, mapSizeX, mapSizeY,
-                           visited, continent, newTerritory);
+        if (static_cast<TileType>(data[newTerritoryStart.second * mapSizeX + newTerritoryStart.first])
+            == TileType::LAND
+            && !visited[newTerritoryStart.second][newTerritoryStart.first])
+        {
+            Territory newTerritory(++territoryID);
+            determineContinent(newTerritoryStart.first, newTerritoryStart.second, data, mapSizeX, mapSizeY,
+                            visited, continent, newTerritory, territoryID);
+            continent.addTerritory(newTerritory);
+        }
     }
-
-    return;
 }
 
 void Map::importMap(const std::string& fileName)
 {
+    int continentID = 1;
+    int territoryID = 1;
+
     std::ifstream ifs(fileName);
 
     nlohmann::json jsonFile;
@@ -112,15 +113,17 @@ void Map::importMap(const std::string& fileName)
 
             TileType tileType = static_cast<TileType>(data[y * mapSizeX + x]);
             Tile tile(x, y, tileType);
-            Continent newContinent("continent", 50);
-            Territory newTerritory("territory");
+            Continent newContinent(continentID, 50);
+            Territory newTerritory(territoryID);
 
             switch (tileType)
             {
             case TileType::LAND:
                 addContinent(newContinent);
                 determineContinent(x, y, data, mapSizeX, mapSizeY,
-                                   visited, continents.back(), newTerritory);
+                                   visited, continents.back(), newTerritory, territoryID);
+                continents.back().addTerritory(newTerritory);
+                continentID++;
                 break;
             case TileType::OCEAN:
                 addOceanTile(tile);
@@ -135,6 +138,8 @@ void Map::importMap(const std::string& fileName)
         }
     }
     std::cout << continents[0].getTerritories().size() << std::endl;
+    std::cout << continents[1].getTerritories().size() << std::endl;
+    std::cout << continents[2].getTerritories().size() << std::endl;
 }
 
 void Map::draw() const
