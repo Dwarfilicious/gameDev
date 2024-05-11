@@ -22,7 +22,7 @@ static const Color playerColors[] = {
     Color(0.5f, 0.5f, 0.5f)  // Gray
 };
 
-static int colorIndex = 0;
+static int colorIndex = -1;
 
 Player::Player(int playerID)
     : playerID(playerID), color(playerColors[colorIndex])
