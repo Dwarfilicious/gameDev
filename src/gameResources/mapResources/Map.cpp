@@ -139,7 +139,7 @@ void Map::importMap(const std::string& fileName)
     }
 }
 
-const std::vector<Continent>& Map::getContinents() const
+std::vector<Continent>& Map::getContinents()
 {
     return continents;
 }

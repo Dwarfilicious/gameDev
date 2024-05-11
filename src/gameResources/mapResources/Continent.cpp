@@ -33,7 +33,7 @@ int Continent::getBonusGold() const
     return bonusGold;
 }
 
-const std::vector<Territory>& Continent::getTerritories() const
+std::vector<Territory>& Continent::getTerritories()
 {
     return territories;
 }

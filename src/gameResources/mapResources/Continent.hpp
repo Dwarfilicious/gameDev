@@ -20,7 +20,7 @@ public:
     int getID() const;
     std::string getName() const;
     int getBonusGold() const;
-    const std::vector<Territory>& getTerritories() const;
+    std::vector<Territory>& getTerritories();
     bool hasTerritory(const Territory& territory) const;
     bool isOwnedBy(const Player& player) const;
     void draw(int mapSizeX, int mapSizeY) const;
