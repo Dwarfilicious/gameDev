@@ -5,12 +5,22 @@
 
 #include "Continent.hpp"
 
-Continent::Continent(const std::string& name, int bonusGold)
-    : name(name), bonusGold(bonusGold) {}
+Continent::Continent(int continentID, int bonusGold)
+    : continentID(continentID), bonusGold(bonusGold) {}
+
+void Continent::setName(const std::string& name)
+{
+    this->name = name;
+}
 
 void Continent::addTerritory(const Territory& territory)
 {
     territories.push_back(territory);
+}
+
+int Continent::getID() const
+{
+    return continentID;
 }
 
 std::string Continent::getName() const
@@ -28,6 +38,16 @@ const std::vector<Territory>& Continent::getTerritories() const
     return territories;
 }
 
+bool Continent::hasTerritory(const Territory& territory) const
+{
+    for (const Territory& t : territories) {
+        if (t == territory) {
+            return true;
+        }
+    }
+    return false;
+}
+
 bool Continent::isOwnedBy(const Player& player) const
 {
     for (const Territory& territory : territories) {
@@ -43,4 +63,14 @@ void Continent::draw(int mapSizeX, int mapSizeY) const
     for (const Territory& territory : territories) {
         territory.draw(mapSizeX, mapSizeY);
     }
+}
+
+bool operator==(const Continent& lhs, const Continent& rhs)
+{
+    return lhs.getID() == rhs.getID();
+}
+
+bool operator!=(const Continent& lhs, const Continent& rhs)
+{
+    return !(lhs == rhs);
 }
