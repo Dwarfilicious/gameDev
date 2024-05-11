@@ -6,8 +6,13 @@
 
 #include "Territory.hpp"
 
-Territory::Territory(const std::string& name)
-    : name(name), owner("Neutral"), color(0.5f, 0.5f, 0.5f) {}
+Territory::Territory(const int territoryID)
+    : territoryID(territoryID), owner(0), color(0.5f, 0.5f, 0.5f) {}
+
+void Territory::setName(const std::string& name)
+{
+    this->name = name;
+}
 
 void Territory::addTile(const Tile& tile)
 {
@@ -20,7 +25,12 @@ void Territory::setOwner(const Player& player)
     color = player.getColor();
 }
 
-std::string Territory::getName() const
+const int Territory::getID() const
+{
+    return territoryID;
+}
+
+const std::string Territory::getName() const
 {
     return name;
 }
@@ -45,4 +55,14 @@ void Territory::draw(int mapSizeX, int mapSizeY) const
     for (const Tile& tile : tiles) {
         tile.draw(color, mapSizeX, mapSizeY);
     }
+}
+
+bool operator==(const Territory& lhs, const Territory& rhs)
+{
+    return lhs.getID() == rhs.getID();
+}
+
+bool operator!=(const Territory& lhs, const Territory& rhs)
+{
+    return !(lhs == rhs);
 }
