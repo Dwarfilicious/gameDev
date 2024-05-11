@@ -129,7 +129,7 @@ void Map::importMap(const std::string& fileName)
                 addBorderTile(tile);
                 break;
             default:
-                std::cout << "Error: unknown tile type" << std::endl;
+                throw std::runtime_error("Error: unknown tile type.");
                 break;
             }
         }
