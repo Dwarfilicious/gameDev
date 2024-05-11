@@ -24,13 +24,18 @@ static const Color playerColors[] = {
 
 static int colorIndex = 0;
 
-Player::Player(const std::string& playerID)
+Player::Player(int playerID)
     : playerID(playerID), color(playerColors[colorIndex])
 {
     colorIndex = (colorIndex + 1) % (sizeof(playerColors) / sizeof(Color));
 }
 
-std::string Player::getID() const
+void Player::setName(const std::string& name)
+{
+    this->name = name;
+}
+
+const int Player::getID() const
 {
     return playerID;
 }

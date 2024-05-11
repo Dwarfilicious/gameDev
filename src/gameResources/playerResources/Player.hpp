@@ -12,12 +12,14 @@
 class Player
 {
 public:
-    Player(const std::string& playerID);
-    std::string getID() const;
+    Player(int playerID);
+    void setName(const std::string& name);
+    const int getID() const;
     const Color& getColor() const;
 
 private:
-    std::string playerID;
+    int playerID;
+    std::string name;
     Color color;
 };
 
