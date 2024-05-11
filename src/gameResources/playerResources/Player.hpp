@@ -15,6 +15,7 @@ public:
     Player(int playerID);
     void setName(const std::string& name);
     const int getID() const;
+    const std::string& getName() const;
     const Color& getColor() const;
 
 private:

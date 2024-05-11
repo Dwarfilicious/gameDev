@@ -40,6 +40,11 @@ const int Player::getID() const
     return playerID;
 }
 
+const std::string& Player::getName() const
+{
+    return name;
+}
+
 const Color& Player::getColor() const
 {
     return color;
