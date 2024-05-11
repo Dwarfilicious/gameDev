@@ -5,17 +5,17 @@
 
 int main() {
     // Create a player
-    Player player("Player1");
+    Player player(1);
 
     // Create a map
     Map map;
 
     // Create a continent and add it to the map
-    Continent continent("Continent1", 10);
+    Continent continent(1, 10);
     map.addContinent(continent);
 
     // Create a territory and add it to the continent
-    Territory territory("Territory1");
+    Territory territory(1);
     territory.setOwner(player);
     continent.addTerritory(territory);
 
