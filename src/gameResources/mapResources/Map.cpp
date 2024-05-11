@@ -7,6 +7,7 @@
 #include <queue>
 
 #include "Map.hpp"
+#include "TileTypes.hpp"
 
 Map::Map() {}
 
@@ -49,7 +50,7 @@ void determineContinent(int x, int y, std::vector<int>& data,
 
     if (data[y * mapSizeX + x] == 1)
     {
-        territory.addTile(Tile(x, y, 1));
+        territory.addTile(Tile(x, y, TileType::LAND));
     }
 
     visited[y][x] = true;
@@ -109,22 +110,22 @@ void Map::importMap(const std::string& fileName)
                 continue;
             }
 
-            int tileType = data[y * mapSizeX + x];
+            TileType tileType = static_cast<TileType>(data[y * mapSizeX + x]);
             Tile tile(x, y, tileType);
             Continent newContinent("continent", 50);
             Territory newTerritory("territory");
 
             switch (tileType)
             {
-            case 1:
+            case TileType::LAND:
                 addContinent(newContinent);
                 determineContinent(x, y, data, mapSizeX, mapSizeY,
                                    visited, continents.back(), newTerritory);
                 break;
-            case 2:
+            case TileType::OCEAN:
                 addOceanTile(tile);
                 break;
-            case 3:
+            case TileType::BORDER:
                 addBorderTile(tile);
                 break;
             default:

@@ -7,6 +7,7 @@
 #include <GL/glut.h>
 
 #include "Color.hpp"
+#include "TileTypes.hpp"
 
 #ifndef TILE_H
 #define TILE_H
@@ -14,15 +15,15 @@
 class Tile
 {
 public:
-    Tile(int x, int y, int type);
+    Tile(int x, int y, TileType type);
     int getX() const;
     int getY() const;
-    int getType() const;
+    TileType getType() const;
     void draw(const Color& color, int mapSizeX, int mapSizeY) const;
 
 private:
     int x, y;
-    int type;
+    TileType type;
 };
 
 #endif /* TILE_H */

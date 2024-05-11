@@ -6,7 +6,7 @@
 
 #include "Tile.hpp"
 
-Tile::Tile(int x, int y, int type)
+Tile::Tile(int x, int y, TileType type)
     : x(x), y(y), type(type) {}
 
 int Tile::getX() const
@@ -19,7 +19,7 @@ int Tile::getY() const
     return y;
 }
 
-int Tile::getType() const
+TileType Tile::getType() const
 {
     return type;
 }
