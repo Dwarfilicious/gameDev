@@ -21,7 +21,11 @@ void display()
 
 int main(int argc, char** argv)
 {
-    map.importMap("testMap.json"); // need to fix how json file is linked
+    std::string exePath(argv[0]);
+    std::string exeDir = exePath.substr(0, exePath.find_last_of("\\/"));
+
+    std::string mapPath = exeDir + "/testMap.json";
+    map.importMap(mapPath);
 
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
