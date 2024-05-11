@@ -25,12 +25,12 @@ void Territory::setOwner(const Player& player)
     color = player.getColor();
 }
 
-const int Territory::getID() const
+int Territory::getID() const
 {
     return territoryID;
 }
 
-const std::string Territory::getName() const
+std::string Territory::getName() const
 {
     return name;
 }

@@ -35,7 +35,7 @@ void Player::setName(const std::string& name)
     this->name = name;
 }
 
-const int Player::getID() const
+int Player::getID() const
 {
     return playerID;
 }

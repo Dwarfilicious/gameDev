@@ -20,8 +20,8 @@ public:
     void setName(const std::string& name);
     void addTile(const Tile& tile);
     void setOwner(const Player& player);
-    const int getID() const;
-    const std::string getName() const;
+    int getID() const;
+    std::string getName() const;
     const Player& getOwner() const;
     const Color& getColor() const;
     const std::vector<Tile>& getTiles() const;
