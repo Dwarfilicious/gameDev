@@ -1,4 +1,7 @@
 #include <GL/glut.h>
+#include <vector>
+#include <cstdlib>
+#include <ctime>
 
 #include "mapResources/Map.hpp"
 
@@ -26,6 +29,24 @@ int main(int argc, char** argv)
 
     std::string mapPath = exeDir + "/testMap.json";
     map.importMap(mapPath);
+
+    std::vector<Player> players;
+
+    for (int i = 0; i < 4; i++)
+    {
+        Player player(i);
+        players.push_back(player);
+    }
+
+    srand(static_cast<unsigned int>(time(0)));
+    for (Continent& continent : map.getContinents())
+    {
+        for (Territory& territory : continent.getTerritories())
+        {
+            int randomIndex = rand() % players.size();
+            territory.setOwner(players[randomIndex]);
+        }
+    }
 
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
