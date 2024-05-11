@@ -20,6 +20,7 @@ public:
     void addOceanTile(const Tile& tile);
     void addBorderTile(const Tile& tile);
     void importMap(const std::string& fileName);
+    const std::vector<Continent>& getContinents() const;
     void draw() const;
 
 private:

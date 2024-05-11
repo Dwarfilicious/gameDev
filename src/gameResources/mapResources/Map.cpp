@@ -139,6 +139,11 @@ void Map::importMap(const std::string& fileName)
     }
 }
 
+const std::vector<Continent>& Map::getContinents() const
+{
+    return continents;
+}
+
 void Map::draw() const
 {
     for (const Continent& continent : continents)
