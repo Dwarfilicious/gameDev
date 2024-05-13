@@ -26,7 +26,7 @@ TileType Tile::getType() const
 
 float normalizeCoordinate(int coordinate, int mapSize, float tileSize)
 {
-    return (2.0f * (coordinate + tileSize / 2) / mapSize) - 1.0f;
+    return (2.0f * coordinate / mapSize) - 1.0f + 0.5f * tileSize;
 }
 
 void Tile::draw(const Color& color, int mapSizeX, int mapSizeY) const
