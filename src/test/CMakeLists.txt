@@ -1,4 +1,6 @@
 find_package(GLEW REQUIRED)
+find_package(GLUT REQUIRED)
+find_package(OpenGL REQUIRED)
 
 add_executable(graphicsTest graphicsTest.cpp)
 add_executable(test test.cpp)
@@ -6,7 +8,7 @@ add_executable(visualTest visualTest.cpp)
 
 target_link_libraries(test PUBLIC gameResources)
 target_link_libraries(visualTest PUBLIC gameResources maps)
-target_link_libraries(graphicsTest PUBLIC gameResources ${GLEW_LIBRARIES} -lfreeglut -lopengl32)
+target_link_libraries(graphicsTest PUBLIC gameResources ${GLEW_LIBRARIES} ${GLUT_LIBRARIES} ${OPENGL_LIBRARIES})
 
 file(GLOB MAPS "${CMAKE_SOURCE_DIR}/src/maps/*.json")
 foreach(MAP ${MAPS})
