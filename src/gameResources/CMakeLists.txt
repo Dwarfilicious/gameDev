@@ -3,6 +3,7 @@ find_package(GLUT REQUIRED)
 find_package(OpenGL REQUIRED)
 
 add_library(gameResources STATIC
+    inputResources/mouseHandler.cpp
     mapResources/Color.cpp
     mapResources/Continent.cpp
     mapResources/Map.cpp
