@@ -144,6 +144,11 @@ std::vector<Continent>& Map::getContinents()
     return continents;
 }
 
+const std::pair<int, int> Map::getMapSize() const
+{
+    return {mapSizeX, mapSizeY};
+}
+
 void Map::draw() const
 {
     for (const Continent& continent : continents)

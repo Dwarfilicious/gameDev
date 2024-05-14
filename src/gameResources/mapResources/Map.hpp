@@ -21,6 +21,7 @@ public:
     void addBorderTile(const Tile& tile);
     void importMap(const std::string& fileName);
     std::vector<Continent>& getContinents();
+    const std::pair<int, int> getMapSize() const;
     void draw() const;
 
 private:
