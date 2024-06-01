@@ -1,3 +1,6 @@
+DEPRECATED, HAVE MOSTLY SWITCHED TO hexGame REPO FOR DEVELOPMENT AS I
+COMPLETELY RESTARTED TO HAVE MORE PROPER STRUCTURING AND FUNCTIONALITY
+
 Currently the main achievement is the completion of a flood-fill algorithm
 that allows a grid map with enumerated tile types made in the Tiled application
 to be imported from a JSON format and algorithmically converted to a usable
